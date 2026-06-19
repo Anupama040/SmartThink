@@ -168,7 +168,7 @@ export const LearningContent = ({ showToast }) => {
     const fetchTopics = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTopics(res.data.topics);
@@ -185,7 +185,7 @@ export const LearningContent = ({ showToast }) => {
         if (!newTopic.name) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/topics', newTopic, {
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/topics`, newTopic, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setIsCreating(false);
@@ -268,7 +268,7 @@ export const TestConfigs = ({ showToast }) => {
     const fetchTests = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTests(res.data.tests);
@@ -293,7 +293,7 @@ export const TestConfigs = ({ showToast }) => {
         
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/tests', newTest, {
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/tests`, newTest, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setShowForm(false);
@@ -388,7 +388,7 @@ export const ForumModeration = ({ showToast }) => {
     const fetchPosts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setPosts(res.data.forum);

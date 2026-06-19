@@ -19,7 +19,7 @@ export default function Forum() {
   const fetchPosts = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts', {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(res.data);
@@ -37,7 +37,7 @@ export default function Forum() {
   const handleCreatePost = async () => {
     const token = localStorage.getItem('token');
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts', {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts`, {
         title: newTitle, content: newContent, tags: newTags
       }, {
         headers: { Authorization: `Bearer ${token}` }

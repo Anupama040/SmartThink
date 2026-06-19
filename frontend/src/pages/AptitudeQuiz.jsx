@@ -90,7 +90,7 @@ export default function AptitudeQuiz() {
   const handleSubmit = async () => {
     const token = localStorage.getItem('token');
     try {
-      const submitUrl = isMock ? `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/submit?mode=MOCK' : `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/submit?mode=PRACTICE_ONLY';
+      const submitUrl = isMock ? `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/submit?mode=MOCK` : `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/submit?mode=PRACTICE_ONLY`;
       const res = await axios.post(submitUrl, selectedAnswers, {
         headers: { Authorization: `Bearer ${token}` }
       });

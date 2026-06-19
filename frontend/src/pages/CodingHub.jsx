@@ -11,7 +11,7 @@ export default function CodingHub() {
     const fetchProblems = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/coding/problems', {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/coding/problems`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProblems(res.data);

@@ -51,17 +51,17 @@ export default function Dashboard() {
       }
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/dashboard', {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/dashboard`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setData(res.data);
 
-        const roadmapRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/dashboard/roadmap', {
+        const roadmapRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/dashboard/roadmap`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRoadmap(roadmapRes.data);
 
-        const mistakesRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/analytics/mistakes', {
+        const mistakesRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/analytics/mistakes`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setMistakes(mistakesRes.data);

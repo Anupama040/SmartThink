@@ -162,7 +162,7 @@ export default function HRInterview() {
             category: category,
             answers: answers
         };
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/hr/evaluate', payload, {
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/hr/evaluate`, payload, {
             headers: { Authorization: `Bearer ${token}` }
         });
         setEvaluationData(res.data);

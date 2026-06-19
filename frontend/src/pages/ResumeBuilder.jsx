@@ -22,12 +22,12 @@ export default function ResumeBuilder() {
     }
     
     try {
-      const activeRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/resumes/active', {
+      const activeRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/resumes/active`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setActiveResume(activeRes.data || null);
 
-      const historyRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/resumes/history', {
+      const historyRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/resumes/history`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setHistory(historyRes.data || []);
@@ -65,7 +65,7 @@ export default function ResumeBuilder() {
 
     const token = localStorage.getItem('token');
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/resumes/upload', formData, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/resumes/upload`, formData, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
