@@ -13,7 +13,7 @@ export default function AptitudeLearn() {
     const fetchLearnContent = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get(`http://localhost:8080/api/aptitude/topics/${topicId}/learn`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/aptitude/topics/${topicId}/learn`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setTopic(res.data);

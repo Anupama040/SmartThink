@@ -168,7 +168,7 @@ export const LearningContent = ({ showToast }) => {
     const fetchTopics = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://localhost:8080/api/admin/management/data', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTopics(res.data.topics);
@@ -185,7 +185,7 @@ export const LearningContent = ({ showToast }) => {
         if (!newTopic.name) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:8080/api/admin/management/topics', newTopic, {
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/topics', newTopic, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setIsCreating(false);
@@ -200,7 +200,7 @@ export const LearningContent = ({ showToast }) => {
     const toggleStatus = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:8080/api/admin/management/topics/${id}/toggle`, {}, {
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/topics/${id}/toggle`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchTopics();
@@ -268,7 +268,7 @@ export const TestConfigs = ({ showToast }) => {
     const fetchTests = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://localhost:8080/api/admin/management/data', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTests(res.data.tests);
@@ -293,7 +293,7 @@ export const TestConfigs = ({ showToast }) => {
         
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:8080/api/admin/management/tests', newTest, {
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/tests', newTest, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setShowForm(false);
@@ -307,7 +307,7 @@ export const TestConfigs = ({ showToast }) => {
     const toggleStatus = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:8080/api/admin/management/tests/${id}/toggle`, {}, {
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/tests/${id}/toggle`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchTests();
@@ -388,7 +388,7 @@ export const ForumModeration = ({ showToast }) => {
     const fetchPosts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://localhost:8080/api/admin/management/data', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/data', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setPosts(res.data.forum);
@@ -405,12 +405,12 @@ export const ForumModeration = ({ showToast }) => {
         try {
             const token = localStorage.getItem('token');
             if (action === 'delete') {
-                await axios.delete(`http://localhost:8080/api/admin/management/forum/${id}`, {
+                await axios.delete(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/forum/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 showToast('Post deleted and user warned.');
             } else {
-                await axios.put(`http://localhost:8080/api/admin/management/forum/${id}/approve`, {}, {
+                await axios.put(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/management/forum/${id}/approve`, {}, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 showToast('Post approved and restored.');

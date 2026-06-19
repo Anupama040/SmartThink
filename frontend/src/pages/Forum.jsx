@@ -19,7 +19,7 @@ export default function Forum() {
   const fetchPosts = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get('http://localhost:8080/api/forum/posts', {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(res.data);
@@ -37,7 +37,7 @@ export default function Forum() {
   const handleCreatePost = async () => {
     const token = localStorage.getItem('token');
     try {
-      await axios.post('http://localhost:8080/api/forum/posts', {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts', {
         title: newTitle, content: newContent, tags: newTags
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -54,7 +54,7 @@ export default function Forum() {
     e.stopPropagation();
     const token = localStorage.getItem('token');
     try {
-      await axios.post(`http://localhost:8080/api/forum/posts/${postId}/upvote`, {}, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts/${postId}/upvote`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (activePost && activePost.id === postId) {
@@ -69,7 +69,7 @@ export default function Forum() {
   const handleAddComment = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.post(`http://localhost:8080/api/forum/posts/${activePost.id}/comments`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts/${activePost.id}/comments`, {
         content: commentContent
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -88,7 +88,7 @@ export default function Forum() {
   const openPost = async (postId) => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get(`http://localhost:8080/api/forum/posts/${postId}`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/forum/posts/${postId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setActivePost(res.data);

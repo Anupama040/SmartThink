@@ -26,7 +26,7 @@ export default function AuthPage() {
         ? { email: formData.email, password: formData.password }
         : formData;
 
-      const response = await axios.post(`http://localhost:8080${endpoint}`, payload);
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}${endpoint}`, payload);
       const userRole = response.data.role;
 
       if (isAdminMode && userRole !== 'ADMIN') {

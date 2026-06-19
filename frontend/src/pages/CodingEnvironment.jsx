@@ -21,7 +21,7 @@ export default function CodingEnvironment() {
     const fetchProblem = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get(`http://localhost:8080/api/coding/problems/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/coding/problems/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProblem(res.data);
@@ -52,7 +52,7 @@ export default function CodingEnvironment() {
     const token = localStorage.getItem('token');
     
     try {
-      const res = await axios.post(`http://localhost:8080/api/coding/problems/${id}/submit`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/coding/problems/${id}/submit`, {
         code,
         language
       }, {

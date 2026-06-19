@@ -49,7 +49,7 @@ export default function UserProfile() {
         const token = localStorage.getItem('token');
         if (!token) return;
         
-        const dashRes = await axios.get('http://localhost:8080/api/dashboard', {
+        const dashRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/dashboard', {
           headers: { Authorization: `Bearer ${token}` }
         });
         

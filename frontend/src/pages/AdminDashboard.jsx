@@ -22,7 +22,7 @@ export default function AdminDashboard() {
     const fetchHub = async () => {
       const token = localStorage.getItem('token');
       try {
-        const analyticsRes = await axios.get('http://localhost:8080/api/admin/analytics', {
+        const analyticsRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/admin/analytics', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAnalytics(analyticsRes.data);
