@@ -57,7 +57,11 @@ export default function UserProfile() {
         const savedProfile = localStorage.getItem('userProfileData');
         
         let initialData;
-        if (savedProfile) {
+        const isAnu = dbData.firstName?.toLowerCase() === 'anu' || dbData.email === 'anu@example.com';
+        const isSonu = dbData.firstName?.toLowerCase() === 'sonu';
+        const isDemo = isSonu || isAnu;
+
+        if (savedProfile && !isDemo) {
           initialData = JSON.parse(savedProfile);
           initialData.name = `${dbData.firstName} ${dbData.lastName || ''}`.trim() || 'Student';
           initialData.progress.quizAverage = `${Math.round(dbData.accuracyToday || 0)}%`;
@@ -67,9 +71,6 @@ export default function UserProfile() {
              initialData.progress.badges.push('Fire Learner');
           }
         } else {
-          const isSonu = dbData.firstName === 'Sonu';
-          const isAnu = dbData.firstName === 'Anu';
-          const isDemo = isSonu || isAnu;
 
           initialData = {
             name: `${dbData.firstName} ${dbData.lastName || ''}`.trim() || 'Student',
