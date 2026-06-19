@@ -33,7 +33,6 @@ services:
     name: smartthink-frontend
     env: static
     plan: free
-    region: ohio
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
