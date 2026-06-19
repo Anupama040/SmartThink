@@ -1,0 +1,47 @@
+services:
+  # PostgreSQL Database
+  - type: psqldb
+    name: smartthink-db
+    plan: free
+    region: ohio
+
+  # Backend (Spring Boot)
+  - type: web
+    name: smartthink-backend
+    env: docker
+    plan: free
+    region: ohio
+    rootDir: backend
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: smartthink-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: smartthink-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: smartthink-db
+          property: password
+
+  # Frontend (React + Vite)
+  - type: web
+    name: smartthink-frontend
+    env: static
+    plan: free
+    region: ohio
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: smartthink-backend
+          envVarKey: RENDER_EXTERNAL_URL
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
