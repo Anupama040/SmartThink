@@ -1,3 +1,10 @@
+databases:
+  - name: smartthink-db
+    databaseName: smartthink
+    user: smartthink_user
+    plan: free
+    region: ohio
+
 services:
 
   # Backend (Spring Boot)
@@ -9,11 +16,17 @@ services:
     rootDir: backend
     envVars:
       - key: DB_URL
-        sync: false
+        fromDatabase:
+          name: smartthink-db
+          property: connectionString
       - key: DB_USERNAME
-        sync: false
+        fromDatabase:
+          name: smartthink-db
+          property: user
       - key: DB_PASSWORD
-        sync: false
+        fromDatabase:
+          name: smartthink-db
+          property: password
 
   # Frontend (React + Vite)
   - type: web
