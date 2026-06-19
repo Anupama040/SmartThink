@@ -1,9 +1,11 @@
-services:
-  # PostgreSQL Database
-  - type: psqldb
-    name: smartthink-db
+databases:
+  - name: smartthink-db
+    databaseName: smartthink
+    user: smartthink_user
     plan: free
     region: ohio
+
+services:
 
   # Backend (Spring Boot)
   - type: web
